@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -9,44 +8,50 @@
 <body>
   <form>
     <p><label for="Name">Votre Nom</label>
-    <input type="text" class="Name" name="name" id="name"/><br/></p>
+      <input type="text" class="Name" name="name" id="name"/><br/>
+    </p>
     <p><label for="UserName">Votre prénom</label>
-      <input type="text" class="Name" name="username" id="userName"/><br/></p>
+      <input type="text" class="Name" name="username" id="userName"/><br/>
+    </p>
     <p><label for="mail">Votre adresse mail</label>
-      <input type="text" name="mail" id="mail"/><br/></p>
+      <input type="text" name="mail" id="mail"/><br/>
+    </p>
     <p><label for="phone">Votre téléphone</label>
-      <input type="text" name="tel" id="phone"/></p>
-      <button type="button" name="button">Valider</button>
+      <input type="text" name="tel" id="phone"/>
+    </p>
+    <button type="button" name="button" id="button">valider</button>
   </form>
 
   <script>
-  //verif email address
-  $("button").click(function(){   // au clik sur le btn
-    var mail = $("#mail").val();  // variable avec la valeur de mail
-    if (mail.match('^[A-z0-9._%+-]+@[A-z0-9.-]+.[A-z]{2,4}$')) {   //regEx pour verifier le mail
-      alert("Votre mail est valide");
+  $(document).ready(function(){
+    //verif email address
+    $("button").click(function(){   // au clik sur le btn
+      var mail = $("#mail").val();  // variable avec la valeur de mail
+      if (mail.match(/^[\w\-\.]+[a-z0-9]@[\w \-\.]+[a-z0-9]\.[a-z]+$/i)){   //regEx pour verifier le mail
+        alert("Votre mail est valide");
+      }else{
+        alert ("Votre mail est invalide");
+      }
+      var phone =$("#phone").val();
+      if (phone.match(/^0[1-9]([ \.\-\/,]?\d{2}){4}/)){   // regEx pour verif qu'il n'y que des chiffres
+      alert ( "Votre téléphone est correct");
     }else{
-      alert ("Votre mail est invalide");
+      alert ("Votre téléphone n'est pas  correct");
     }
- var phone =$("#phone").val();
- if (phone.match('(0|(\\+33)|(0033))[1-9][0-9]{8}')){   // regEx pour verif qu'il n'y que des chiffres
-   alert ( "Votre téléphone est correct");
- }else{
-   alert ("Votre téléphone n'est pas  correct");
- }
- var name= $("#name").val();
- if (name.match('^[a-z]+(-[a-z]+)*$')) {  //regEx qui verifie lettres et tirets
-   alert ("Votre nom est exact");
- }else{
-   alert ("il y'a un problème dans votre nom");
- }
- var userName = $("#userName").val();
- if (userName.match('^[a-z]+(-[a-z]+)*$')) {  //regEx pour verifier lettres et tirets
-   alert ("Votre prénom est correct");
- }else{
-   alert ("Votre prénom est incorrect");
- }
+    var name= $("#name").val();
+    if (name.match(/^\D+[-]?\D+/i)){  //regEx qui verifie lettres et tirets
+      alert ("Votre nom est correct");
+    }else{
+      alert ("il y'a un problème dans votre nom");
+    }
+    var userName = $("#userName").val();
+    if (userName.match(/^\D+[-]?\D+/i)){  //regEx pour verifier lettres et tirets
+      alert ("Votre prénom est correct");
+    }else{
+      alert ("Votre prénom est incorrect");
+    }
   });
-  </script>
+  })
+</script>
 </body>
 </html>
